@@ -1,4 +1,4 @@
-goby
+Goby
 ====
 
 Develop iOS apps with ClojureScript.
