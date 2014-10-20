@@ -1,9 +1,8 @@
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 
 @protocol GBYImageView <JSExport>
 
--(void)clearImage;
 @property JSValue* hidden;
 
 @end

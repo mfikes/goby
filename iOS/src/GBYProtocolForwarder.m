@@ -39,9 +39,8 @@
     //NSLog(@"getFnWithNameFromScript: %@", name);
     
     JSValue* rv = [self.manager getCljsSymbol:name
-                                  inNamespace:@"fikesfarm"
-                              andSubNamespace:@"ios"
-                           andSubSubNamespace:@"interop"];
+                                  inNamespace:@"goby"
+                              andSubNamespace:@"core"];
     
     NSAssert(!rv.isUndefined, @"Function with name %@ is undefined in script", name);
     

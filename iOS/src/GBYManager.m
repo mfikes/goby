@@ -144,7 +144,7 @@
 
 - (JSValue*)getCljsSymbol:(NSString*)symbol inNamespace:(NSString *)ns andSubNamespace:(NSString*)sns
 {
-    return self.context[[GBYManager munge:ns]][[GBYManager munge:sns]][[FBYManager munge:symbol]];
+    return self.context[[GBYManager munge:ns]][[GBYManager munge:sns]][[GBYManager munge:symbol]];
 }
 
 - (JSValue*)getCljsSymbol:(NSString*)symbol inNamespace:(NSString *)ns andSubNamespace:(NSString*)sns andSubSubNamespace:(NSString*)ssns
