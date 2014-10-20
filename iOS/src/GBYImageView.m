@@ -1,6 +1,4 @@
 #import "GBYImageView.h"
-#import "GBYImageUtils.h"
-#import "UIImageView+AFNetworking.h"
 
 @interface GBYImageView ()
 
@@ -27,12 +25,6 @@
 -(UIImageView*)wrappedImageView
 {
     return self.imageView;
-}
-
--(void)clearImage
-{
-    self.imageView.image = nil;
-    [GBYImageUtils clearShadowOnImageView:self.imageView];
 }
 
 -(JSValue*)hidden
