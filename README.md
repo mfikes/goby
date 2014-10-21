@@ -26,6 +26,21 @@ Check out the companion example project [Shrimp](https://github.com/mfikes/shrim
 5. Add code in your ClojureScript namespace to set up UI events handlers, peform application logic, update UI elements, etc.
 6. Add more views and segues between them as you normally would. In the end, the application primarily consists of a set of ClojureScript namespaces covering the various view controllers, along with ancillary application-level ClojureScript needed to flesh out your application.
 
+REPL
+====
+
+You can use a REPL while developing, inspecting and manipulating UI and other app state, revising function implementations, etc. I have found that I need to restart my iOS app when making Storyboard changes, or other significant changes. The [Shrimp](https://github.com/mfikes/shrimp) project discusses establishing a REPL.
+
+Performance
+===========
+
+Launch time performance is good. On an A5 (which is used by the iPhone 4s, iPad 2, and iPod touch), the Google Closure optimized JavaScript for my production app is loaded in around 380 milliseconds.
+
+At runtime, one area where you can often see performance issues in iOS is when implemnting scrolling table views. In my production app, I have table views being driven by ClojureScript, initializing cells using data on the ClojureScript side, etc., and I have seen no stuttering when scrolling.
+
+Otherwise, I've been using the ClojureScript to "orchestrate" the otherwise native UI and native animations present in iOS and have had no performance issues in going this route.
+
+
 Project Status
 ==============
 
