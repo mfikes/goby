@@ -8,7 +8,7 @@ Overview
 
 This repository contains some lightweight ClojureScript and Objective-C glue code that facilitates creating iOS apps where the view controllers are written in ClojureScript instead of Objective‑C or Swift.
 
-The overall design is to provide decorators for various UIKit elements that implement the `JSExport` protocol, so that, in the end, interop is established between the ClojureScript code and the UI. The UI is essentially treated as a bunch mutable state that can be manipulated or listened to, with atoms in the ClojureScript code simply holding references to the decorators.
+The overall design is to provide decorators for various UIKit elements, implementing the `JSExport` protocol, so that interop is established between the ClojureScript code and the UI. The UI is essentially treated as a bunch mutable state that can be manipulated or listened to, with atoms in the ClojureScript code simply holding references to the decorators.
 
 When dealing with Objective-C protocol implementations, such as `TableViewDataSource`, Goby provides an equivalent ClojureScript protocol, and some glue code and a `reify` macro, essentially making it possible to implement an Objective-C protocol in ClojureScript, even dealing with the case where some of the Objective-C methods are optional.
 
