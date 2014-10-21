@@ -8,19 +8,21 @@ Overview
 
 This repository contains some lightweight ClojureScript and Objective-C glue code that facilitates creating iOS apps where the view controllers are written in ClojureScript instead of Objective‑C or Swift.
 
-This approach was taken to build [an app](http://fikesfarm.com/cc/) currently in the App Store, and this repo is derived from the reusable bits from that project.
+The overall design is to provide decorators for various UIKit elements that implement the `JSExport` protocol, so that, in the end, interop is established between the ClojureScript code and the UI. The UI is essentially treated as a bunch mutable state that can be manipulated or listened to, with atoms in the ClojureScript code simply holding references to the decorators.
 
-The overall design is to provide decorators for various UIKit elements that implement the JSExport protocol, so that, in the end, interop is established between the ClojureScript and the UI. The UI is essentially treated as a bunch mutable state that can be manipulated or listened to, with atoms in the ClojureScript code simply holding references to the decorators.
+This approach was taken to build [an app](http://fikesfarm.com/cc/) currently in the App Store, and this repo is derived from the reusable bits from that project.
 
 Usage
 =====
 
 Check out the companion example project [Shrimp](https://github.com/mfikes/shrimp) illustrating actual use of this code.
 
-1. In your `[AppDelegate application:didFinishLaunchingWithOptions:]` set up an instance of `GBYManager`, wich loads the ClojureScript-compiled JavaScriipt, and adds a few callback handlers.
-2. Create a view using Storyboards as usual, and wire the UI elements to fields. Create a "glue" ViewController instance for this view, that extends `GBYViewController` and calls into the ClojureScript when the view is loaded, passing in wrapped references to UIKit elements.
-3. Create a ClojureScript namespace that mirrors the name of your view, and make use of the `defui` macro to set up atoms for each of your UI elements and to export a method that the Objective-C side can use to initialize these atoms.
-4. Add code in your ClojureScript namespace to set up UI events handlers, peform application logic, update UI elements, etc.
+1. Set up sibling iOS and ClojureScript projects and make the Goby iOS and ClojureScript code available to each. (The [Shrimp](https://github.com/mfikes/shrimp) project provides a working example of this where Goby is simply used as a Git submodule, with a few symbolic links established in the needed places.) The ClojureScript compiles down to JavaScript which is included as a reference in the iOS project bundle.
+2. In your `[AppDelegate application:didFinishLaunchingWithOptions:]` set up an instance of `GBYManager`, wich loads the ClojureScript-compiled JavaScript, and adds a few callback handlers.
+3. Create a view using Storyboards as usual, and wire the UI elements to your view controller header like you would normally do. Create a "glue" `ViewController` instance for this view, that extends `GBYViewController`. Make your view controller call into the ClojureScript when the view is loaded, passing in wrapped references to UIKit elements.
+4. Create a ClojureScript namespace that mirrors the name of your view, and make use of the `defui` macro to set up atoms for each of your UI elements and to export a method that the Objective-C side can use to initialize these atoms.
+5. Add code in your ClojureScript namespace to set up UI events handlers, peform application logic, update UI elements, etc.
+6. Add more views and segues between them as you normally would. In the end, the application primarily consists of a set of ClojureScript namespaces covering the various view controllers, along with ancillary application-level ClojureScript needed to flesh out your application.
 
 Project Status
 ==============
