@@ -17,6 +17,12 @@
  */
 @interface GBYStepper : NSObject<GBYStepper>
 
+/**
+ Wraps a stepper for interop.
+ 
+ @param stepper The stepper to wrap.
+ @return The wrapped stepper.
+ */
 +(GBYStepper*)wrap:(UIStepper*)stepper;
 
 @end

@@ -21,6 +21,12 @@
  */
 @interface GBYButton : NSObject<GBYButton>
 
+/**
+ Wraps a button for interop.
+ 
+ @param button The button to wrap.
+ @return The wrapped button.
+ */
 +(GBYButton*)wrap:(UIButton*)button;
 
 @end

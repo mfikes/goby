@@ -18,6 +18,12 @@
  */
 @interface GBYTableViewCell : NSObject<GBYTableViewCell>
 
+/**
+ Wraps a table view cell for interop.
+ 
+ @param tableViewCell The table view cell to wrap.
+ @return The wrapped table view cell.
+ */
 +(GBYTableViewCell*)wrap:(UITableViewCell*)tableViewCell;
 
 @end

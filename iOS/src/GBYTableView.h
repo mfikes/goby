@@ -39,6 +39,12 @@
  */
 @interface GBYTableView : NSObject<GBYTableView>
 
+/**
+ Wraps a table view for interop.
+ 
+ @param tableView The table view to wrap.
+ @return The wrapped table view.
+ */
 +(GBYTableView*)wrap:(UITableView*)tableView;
 
 @end

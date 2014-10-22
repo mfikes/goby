@@ -17,6 +17,12 @@
  */
 @interface GBYSwitch : NSObject<GBYSwitch>
 
+/**
+ Wraps a switch for interop.
+ 
+ @param zwitch The switch to wrap.
+ @return The wrapped switch.
+ */
 +(GBYSwitch*)wrap:(UISwitch*)zwitch;
 
 @end

@@ -21,6 +21,12 @@
  */
 @interface GBYLabel : NSObject<GBYLabel>
 
+/**
+ Wraps a label for interop.
+ 
+ @param label The label to wrap.
+ @return The wrapped label.
+ */
 +(GBYLabel*)wrap:(UILabel*)label;
 
 @end

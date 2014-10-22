@@ -30,7 +30,19 @@
 
 @interface GBYColor : NSObject<GBYColor>
 
+/**
+ Wraps a color for interop.
+ 
+ @param color The color to wrap.
+ @return The wrapped color.
+ */
 +(GBYColor*)wrap:(UIColor*)color;
+
+/**
+ Gets the wrapped color.
+ 
+ @return the wrapped color.
+ */
 -(UIColor*)color;
 
 @end

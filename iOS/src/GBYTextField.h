@@ -69,7 +69,7 @@
  Wraps a text field for interop.
  
  @param textField The text field to wrap.
- @return A wrapped text field.
+ @return The wrapped text field.
  */
 +(GBYTextField*)wrap:(UITextField*)textField;
 
