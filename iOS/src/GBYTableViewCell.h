@@ -3,6 +3,9 @@
 
 @class GBYLabel;
 
+/**
+ `GBYTableViewCell` defines interop methods for a `UITableViewCell`.
+ */
 @protocol GBYTableViewCell <JSExport>
 
 @property (nonatomic,readonly) GBYLabel* textLabel;
@@ -10,6 +13,9 @@
 
 @end
 
+/**
+ `GBYTableViewCell` wraps a `UITableViewCell` for interop.
+ */
 @interface GBYTableViewCell : NSObject<GBYTableViewCell>
 
 +(GBYTableViewCell*)wrap:(UITableViewCell*)tableViewCell;

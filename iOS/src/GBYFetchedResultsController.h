@@ -2,6 +2,9 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 #import <CoreData/CoreData.h>
 
+/**
+ `GBYFetchedResultsController` defines interop methods for an `NSFetchedResultsController`.
+ */
 @protocol GBYFetchedResultsController <JSExport>
 
 @property JSValue* cljsDelegate;

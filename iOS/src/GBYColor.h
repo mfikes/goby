@@ -3,6 +3,9 @@
 
 @class GBYColor;
 
+/**
+ `GBYColor` defines interop methods for `UIColor`.
+ */
 @protocol GBYColor <JSExport>
 
 +(GBYColor*)colorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat)alpha;

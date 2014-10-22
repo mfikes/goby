@@ -3,6 +3,9 @@
 
 @class GBYColor;
 
+/**
+ `GBYLabel` defines interop methods for a `UILabel`.
+ */
 @protocol GBYLabel <JSExport>
 
 @property (nonatomic) NSString* text;
@@ -13,6 +16,9 @@
 
 @end
 
+/**
+ `GBYLabel` wraps a `UILabel` for interop.
+ */
 @interface GBYLabel : NSObject<GBYLabel>
 
 +(GBYLabel*)wrap:(UILabel*)label;

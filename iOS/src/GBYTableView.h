@@ -1,6 +1,9 @@
 #import <UIKit/UIKit.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 
+/**
+ `GBYTableView` defines interop methods for a `UITableView`.
+ */
 @protocol GBYTableView <JSExport>
 
 @property JSValue* dataSource;
@@ -31,6 +34,9 @@
 
 @end
 
+/**
+ `GBYTableView` wraps a `UITableView` for interop.
+ */
 @interface GBYTableView : NSObject<GBYTableView>
 
 +(GBYTableView*)wrap:(UITableView*)tableView;

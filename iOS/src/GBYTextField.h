@@ -3,6 +3,9 @@
 
 @class GBYColor;
 
+/**
+ `GBYTextField` defines interop methods for a `UITextField`.
+ */
 @protocol GBYTextField <JSExport>
 
 @property JSValue* enabled;
@@ -20,6 +23,9 @@
 
 @end
 
+/**
+ `GBYTextField` wraps a `UITextField` for interop.
+ */
 @interface GBYTextField : NSObject<GBYTextField>
 
 +(GBYTextField*)wrap:(UITextField*)textField;
