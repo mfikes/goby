@@ -6,47 +6,52 @@ Develop iOS apps with ClojureScript.
 Overview
 ========
 
-This repository contains some lightweight ClojureScript and Objective-C glue code that facilitates creating iOS apps where the view controllers are written in ClojureScript instead of Objective‑C or Swift.
+This repository contains some lightweight ClojureScript and Objective-C glue code that facilitates creating an iOS app where the view controllers are written in ClojureScript instead of Objective‑C or Swift. Otherwise the resulting iOS app is native, with the compiled JavaScript running in an embedded JavaScriptCore instance.
 
-The overall design is to provide decorators for various UIKit elements, implementing the `JSExport` protocol, so that interop is established between the ClojureScript code and the UI. The UI is essentially treated as a bunch mutable state that can be manipulated or listened to, with atoms in the ClojureScript code simply holding references to the decorators.
+The overall design is to provide decorators for various UIKit elements, implementing the `JSExport` protocol so that interop is established between the ClojureScript code and the UI elements. Goby essentially treats the UI as a bunch mutable state that can be manipulated or listened to, with atoms in the ClojureScript code simply holding references to the decorators.
 
-When dealing with Objective-C protocol implementations, such as `TableViewDataSource`, Goby provides an equivalent ClojureScript protocol, and some glue code and a `reify` macro, essentially making it possible to implement an Objective-C protocol in ClojureScript, even dealing with the case where some of the Objective-C methods are optional.
+When needing to provide Objective-C protocol implementations such as `TableViewDataSource`, Goby provides an equivalent ClojureScript protocol, along with some glue code and a `reify` macro, making it possible to implement the Objective-C protocol in ClojureScript. The case where some of the Objective-C methods are optional is handled.
 
-This approach was taken to build [an app](http://fikesfarm.com/cc/) currently in the App Store, and this repo is derived from the reusable bits from that project.
+This design approach was taken to build [an app](http://fikesfarm.com/cc/) currently in the App Store and this repo is derived from the reusable bits from that project.
 
 Usage
 =====
 
-Check out the companion example project [Shrimp](https://github.com/mfikes/shrimp) illustrating actual use of this code.
+Check out the companion working example project [Shrimp](https://github.com/mfikes/shrimp) illustrating actual use of this code.
 
-1. Set up sibling iOS and ClojureScript projects and make the Goby iOS and ClojureScript code available to each. (The [Shrimp](https://github.com/mfikes/shrimp) project provides a working example of this where Goby is simply used as a Git submodule, with a few symbolic links established in the needed places.) The ClojureScript compiles down to JavaScript which is included as a reference in the iOS project bundle.
-2. In your `[AppDelegate application:didFinishLaunchingWithOptions:]` set up an instance of `GBYManager`, wich loads the ClojureScript-compiled JavaScript, and adds a few callback handlers.
-3. Create a view using Storyboards as usual, and wire the UI elements to your view controller header like you would normally do. Create a "glue" `ViewController` instance for this view, that extends `GBYViewController`. Make your view controller call into the ClojureScript when the view is loaded, passing in wrapped references to UIKit elements.
-4. Create a ClojureScript namespace that mirrors the name of your view, and make use of the `defui` macro to set up atoms for each of your UI elements and to export a method that the Objective-C side can use to initialize these atoms.
-5. Add code in your ClojureScript namespace to set up UI events handlers, peform application logic, update UI elements, etc.
-6. Add more views and segues between them as you normally would. In the end, the application primarily consists of a set of ClojureScript namespaces covering the various view controllers, along with ancillary application-level ClojureScript needed to flesh out your application.
+Roughly speaking, the overall steps are:
+
+1. Set up sibling iOS and ClojureScript projects and make the Goby iOS and ClojureScript code available to each. (The [Shrimp](https://github.com/mfikes/shrimp) project provides a working example of this where Goby is simply used as a Git submodule, with a few symbolic links established in the needed places.) The ClojureScript for your app compiles down to JavaScript which is included as a reference in the iOS project bundle.
+2. In your `[AppDelegate application:didFinishLaunchingWithOptions:]` set up an instance of `GBYManager`, which loads the ClojureScript-compiled JavaScript, and adds a few callback handlers as needed for logging and timers.
+3. Create a view using Storyboards in Xcode’s interface builder as usual, and wire the UI elements to your view controller header as you would normally do. Create a "glue" `ViewController` class for this view, extending `GBYViewController`. Make your view controller call into the ClojureScript when the view is loaded, passing in decorated references to UIKit elements.
+4. On the ClojureScript side, create a namespace that mirrors the name of your view controller, and make use of the `defui` macro to set up atoms for each of your UI elements and to `^:export` a method that the Objective-C side can use to initialize the UI element atoms. (Of course, all of this could be coded by hand, but this is an example where the Goby code can reduce repeated boilerplate for each view controller.)
+5. Add code in your ClojureScript namespace to set up UI events handlers, perform application logic as needed, update UI elements, etc. In other words, implement your app logic in ClojureScript. :)
+6. Add more views and view controllers, and segues between them, as you normally would. In the end, the application primarily consists of a set of ClojureScript namespaces covering the various view controllers, along with ancillary application-level ClojureScript needed to flesh out your application.
 
 REPL
 ====
 
 You can use a REPL while developing, inspecting and manipulating UI and other app state, revising function implementations, etc. I have found that I need to restart my iOS app when making Storyboard changes, or other significant changes. The [Shrimp](https://github.com/mfikes/shrimp) project discusses establishing a REPL.
 
+The REPL is a “browser” REPL, but connects to the embedded JavaScriptCore instance in the iOS app. (In dev builds, Goby conditionally compiles this JavaScriptCore instance to be in a hidden web view so that sufficient “browser” functionality exists for the REPL, but in release builds, a JavaScriptCore instance is directly `alloc/init`d.
+
 Performance
 ===========
 
 Launch time performance is good. On an A5 (which is used by the iPhone 4s, iPad 2, and iPod touch), the Google Closure optimized JavaScript for my production app is loaded in around 380 milliseconds.
 
-At runtime, one area where you can often see performance issues in iOS is when implemnting scrolling table views. In my production app, I have table views being driven by ClojureScript, initializing cells using data on the ClojureScript side, etc., and I have seen no stuttering when scrolling.
+At runtime, one area where you can often see performance issues in iOS is when implementing scrolling table views. In my production app, I have table views being driven by ClojureScript, initializing cells using data on the ClojureScript side, etc., and I have seen no stuttering when scrolling.
 
-Otherwise, I've been using the ClojureScript to "orchestrate" the otherwise native UI and native animations present in iOS and have had no performance issues in going this route.
+Otherwise, I've arguably been using the ClojureScript to "orchestrate" the otherwise native iOS UI and native iOS animations, and have had no performance issues in going this route.
 
+For tasks such as using HTTP for image fetching or REST API calls, I simply make use of the fine native AFNetworking library, driving it from ClojureScript.
 
 Project Status
 ==============
 
-Goby is under active development. I have used it to create one production app in the App Store and am using it to create additional apps, fleshing out aspects of the Goby code as needed. As such the code is subject to change.
+Goby is under active development. I have used it to create [one production app](http://fikesfarm.com/cc/) in the App Store and am using it to develop additional apps, fleshing out aspects of the Goby code as needed. As such the code is incomplete in some areas, has some rough corners in others, and questionable—but workable—design in others. So the code is still evolving and subject to change.
 
-If you'd like to use it, or would like to contribute, I'd be happy---that's the point of sharing it here!
+Having said that, If you'd like to use it, or would like to contribute, I'd be happy---that's the point of sharing it here!
 
 License
 =======
