@@ -6,7 +6,7 @@ Develop iOS apps with ClojureScript.
 Overview
 ========
 
-This repository contains some lightweight ClojureScript and Objective-C glue code that facilitates creating an iOS app where the view controllers are written in ClojureScript instead of Objective‑C or Swift. Otherwise the resulting iOS app is native, with the compiled JavaScript running in an embedded JavaScriptCore instance.
+This repository contains some lightweight ClojureScript and Objective-C glue code that facilitates creating iOS apps where the view controllers are written in ClojureScript instead of Objective‑C or Swift. Otherwise the resulting iOS apps are native, with the compiled JavaScript running in an embedded JavaScriptCore instance.
 
 The overall design is to provide decorators for various UIKit elements, implementing the `JSExport` protocol so that interop is established between the ClojureScript code and the UI elements. Goby essentially treats the UI as a bunch mutable state that can be manipulated or listened to, with atoms in the ClojureScript code simply holding references to the decorators.
 
