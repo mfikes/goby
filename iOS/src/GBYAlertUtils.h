@@ -15,6 +15,9 @@
 
 @end
 
+/**
+ `GBYAlertUtils` implements utility methods for displaying alerts.
+ */
 @interface GBYAlertUtils : NSObject<GBYAlertUtils>
 
 @end

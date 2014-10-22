@@ -6,13 +6,34 @@
  */
 @protocol GBYButton <JSExport>
 
--(void)setTouchUpInsideCallback:(JSValue*)callback;
--(void)setTouchDownCallback:(JSValue*)callback;
+/**
+ Maps to the `enabled` property.
+ */
+@property JSValue* enabled;
 
+/**
+ Maps to the `hidden` property.
+ */
+@property JSValue* hidden;
+
+/**
+ Maps to `-[UIButton setTitle:forState]`.
+ */
 - (void)setTitle:(NSString *)title forState:(UIControlState)state;
 
-@property JSValue* enabled;
-@property JSValue* hidden;
+/**
+ Sets a callback for `UIControlEventTouchUpInside`.
+ 
+ @param callback The callback.
+ */
+-(void)setTouchUpInsideCallback:(JSValue*)callback;
+
+/**
+ Sets a callback for `UIControlEventTouchDown`.
+ 
+ @param callback The callback.
+ */
+-(void)setTouchDownCallback:(JSValue*)callback;
 
 @end
 

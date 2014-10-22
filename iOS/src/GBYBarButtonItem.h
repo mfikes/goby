@@ -6,9 +6,22 @@
  */
 @protocol GBYBarButtonItem <JSExport>
 
--(void)setActionCallback:(JSValue*)callback;
+/**
+ Maps to the `enabled` property.
+ */
 @property JSValue* enabled;
+
+/**
+ Maps to the `title` property.
+ */
 @property NSString* title;
+
+/**
+ Sets the action callback.
+ 
+ @param callback The callback.
+ */
+-(void)setActionCallback:(JSValue*)callback;
 
 @end
 
@@ -17,6 +30,12 @@
  */
 @interface GBYBarButtonItem : NSObject<GBYBarButtonItem>
 
+/**
+ Wraps a bar button item for interop.
+ 
+ @param barButtonItem The bar button item to wrap.
+ @return The wrapped bar button item.
+ */
 +(GBYBarButtonItem*)wrap:(UIBarButtonItem*)barButtonItem;
 
 @end
