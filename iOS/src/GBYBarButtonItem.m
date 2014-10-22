@@ -32,7 +32,7 @@
 {
     self.myActionCallback = callback;
     if (self.myActionCallback) {
-        self.barButtonItem.target = self;
+        //self.barButtonItem.target = self;
         self.barButtonItem.action = @selector(doActionCallback);
     }
 }
