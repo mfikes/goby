@@ -5,7 +5,6 @@
 
 (def env "Contains a map of environment values such as whether running a release build, etc." (atom {}))
 
-
 (def table-view-scroll-positions
   "Defines a map from keywords to `UITableViewScrollPosition` values."
   {:table-view-scroll-position-none   0
