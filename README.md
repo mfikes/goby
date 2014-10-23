@@ -8,11 +8,15 @@ Overview
 
 This repository contains some lightweight ClojureScript and Objective-C glue code that facilitates creating iOS apps where the view controllers are written in ClojureScript instead of Objective‑C or Swift. Otherwise the resulting iOS apps are native, with the compiled JavaScript running in an embedded JavaScriptCore instance.
 
-The overall design is to provide decorators for various UIKit elements, implementing the `JSExport` protocol so that interop is established between the ClojureScript code and the UI elements. Goby essentially treats the UI as a bunch mutable state that can be manipulated or listened to, with atoms in the ClojureScript code simply holding references to the decorators.
+The overall design includes the creation of decorators for various UIKit elements, implementing the `JSExport` protocol so that interop can be established between the ClojureScript code and the UI elements. Goby essentially treats the UI as a bunch mutable state that can be manipulated or listened to, with atoms in the ClojureScript code simply holding references to the decorators.
 
 When needing to provide Objective-C protocol implementations such as `UITableViewDataSource`, Goby provides an equivalent ClojureScript protocol, along with some glue code and a `reify` macro, making it possible to implement the Objective-C protocol in ClojureScript. The case where some of the Objective-C methods are optional is handled.
 
-This design approach was taken to build [an app](http://fikesfarm.com/cc/) currently in the App Store and this repo is derived from the reusable bits from that project.
+A few other things are thrown in to get things off the ground, like some infrastructural glue code to manage the loading of the compiled JavaScript, along with simple facilities for method dispatch from the iOS to ClojureScript namespaces. ClojureScript keywords for iOS SDK enumeration constants are thrown in to make life easier.
+
+As such, Goby is fairly minimal, and simply provides some structure to help establish communication between the Objective-C and ClojureScript sides of the fence. It doesn't attempt to provide a sophisticated framework such as  providing a FRP model like [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa), but it at least gets you to the point where you are coding in ClojureScript. :) 
+
+This approach was taken to build [an app](http://fikesfarm.com/cc/) currently in the App Store and this repo is derived from the reusable bits from that project.
 
 Usage
 =====
