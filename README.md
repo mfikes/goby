@@ -12,7 +12,7 @@ The overall design includes the creation of decorators for various UIKit element
 
 When needing to provide Objective-C protocol implementations such as `UITableViewDataSource`, Goby provides an equivalent ClojureScript protocol, along with some glue code and a `reify` macro, making it possible to implement the Objective-C protocol in ClojureScript. The case where some of the Objective-C methods are optional is handled.
 
-A few other things are thrown in to get things off the ground, like some infrastructural glue code to manage the loading of the compiled JavaScript, along with simple facilities for method dispatch from the iOS to ClojureScript namespaces. ClojureScript keywords for iOS SDK enumeration constants are thrown in to make life easier.
+A few other things are thrown in to get things off the ground, like some infrastructural glue code to manage the loading of the compiled JavaScript, along with simple facilities for method dispatch from the iOS to ClojureScript namespaces. ClojureScript keywords for iOS SDK enumeration constants are added to make life easier.
 
 As such, Goby is fairly minimal, and simply provides some structure to help establish communication between the Objective-C and ClojureScript sides of the fence. It doesn't attempt to provide a sophisticated framework such as  providing a FRP model like [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa), but it at least gets you to the point where you are coding in ClojureScript. :) 
 
