@@ -12,7 +12,7 @@
 
 @interface GBYViewController : UIViewController<GBYViewController>
 
-- (NSString*) getNamespace;
+- (NSString*)getNamespace;
 - (JSValue*)getFunction:(NSString*)name;
 - (void)handleViewDidLoad;
 

@@ -91,7 +91,7 @@
     return context;
 }
 
-- (id)initInAppNamespace:(NSString*)appNamespace
+- (id)initWithInitFnName:(NSString*)initFnName inNamespace:(NSString*)namespace
 {
     if (self = [super init]) {
         
@@ -109,7 +109,9 @@
         NSAssert(scriptString != nil, @"The JavaScript text could not be loaded");
         [self.context evaluateScript:scriptString];
         
-        JSValue* initFn = [self getCljsSymbol:@"init!" inNamespace:appNamespace andSubNamespace:@"core"];
+        JSValue* initFn = [self getValue:initFnName inNamespace:namespace];
+        
+        NSAssert(!initFn.isUndefined, @"Could not find the app init function");
         
 #ifdef DEBUG
         BOOL debugBuild = YES;
@@ -132,24 +134,18 @@
     return self;
 }
 
-- (JSValue*)getCljsSymbol:(NSString*)symbol
+- (JSValue*)getValue:(NSString*)name inNamespace:(NSString*)namespace
 {
-    return self.context[[GBYManager munge:symbol]];
-}
-
-- (JSValue*)getCljsSymbol:(NSString*)symbol inNamespace:(NSString *)ns
-{
-    return self.context[[GBYManager munge:ns]][[GBYManager munge:symbol]];
-}
-
-- (JSValue*)getCljsSymbol:(NSString*)symbol inNamespace:(NSString *)ns andSubNamespace:(NSString*)sns
-{
-    return self.context[[GBYManager munge:ns]][[GBYManager munge:sns]][[GBYManager munge:symbol]];
-}
-
-- (JSValue*)getCljsSymbol:(NSString*)symbol inNamespace:(NSString *)ns andSubNamespace:(NSString*)sns andSubSubNamespace:(NSString*)ssns
-{
-    return self.context[[GBYManager munge:ns]][[GBYManager munge:sns]][[GBYManager munge:ssns]][[GBYManager munge:symbol]];
+    JSValue* namespaceValue = nil;
+    for (NSString* namespaceElement in [namespace componentsSeparatedByString: @"."]) {
+        if (namespaceValue) {
+            namespaceValue = namespaceValue[[GBYManager munge:namespaceElement]];
+        } else {
+            namespaceValue = self.context[[GBYManager munge:namespaceElement]];
+        }
+    }
+    
+    return namespaceValue[[GBYManager munge:name]];
 }
 
 + (NSString*)munge:(NSString*)s

@@ -24,11 +24,6 @@
     return nil;
 }
 
-- (NSString*) getSubNamespace {
-    NSAssert(NO, @"Must provide init method namespace");
-    return nil;
-}
-
 - (void)performSegueWithIdentifier:(NSString*)identifier
 {
     [self performSegueWithIdentifier:identifier sender:self];
@@ -65,9 +60,7 @@
 
 - (JSValue*)getFunctionImpl:(NSString*)name isOptional:(BOOL)optional
 {
-    JSValue *function = [self.manager getCljsSymbol:name
-                                        inNamespace:[self getNamespace]
-                                    andSubNamespace:[self getSubNamespace]];
+    JSValue *function = [self.manager getValue:name inNamespace:[self getNamespace]];
     
     if (optional) {
         if ([function isUndefined]) {
