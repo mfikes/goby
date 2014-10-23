@@ -6,15 +6,15 @@ Develop iOS apps with ClojureScript.
 Overview
 ========
 
-This repository contains some lightweight ClojureScript and Objective-C glue code that facilitates creating iOS apps where the view controllers are written in ClojureScript instead of Objective‑C or Swift. Otherwise the resulting iOS apps are native, with the compiled JavaScript running in an embedded JavaScriptCore instance.
+This repository contains some lightweight ClojureScript and Objective-C glue code that facilitates creating iOS apps where the view controllers are written in ClojureScript instead of Objective‑C or Swift. Otherwise the resulting iOS apps are native, with the JavaScript running in an embedded JavaScriptCore instance.
 
-The overall design includes the creation of decorators for various UIKit elements, implementing the `JSExport` protocol so that interop can be established between the ClojureScript code and the UI elements. Goby essentially treats the UI as a bunch mutable state that can be manipulated or listened to, with atoms in the ClojureScript code simply holding references to the decorators.
+The overall design includes decorators for various UIKit elements, each implementing the `JSExport` protocol so that interop can be established between the ClojureScript code and the UI elements. Goby treats the UI as a bunch mutable state that can be manipulated or listened to, with atoms in the ClojureScript code simply holding references to the decorators.
 
-When needing to provide Objective-C protocol implementations such as `UITableViewDataSource`, Goby provides an equivalent ClojureScript protocol, along with some glue code and a `reify` macro, making it possible to implement the Objective-C protocol in ClojureScript. The case where some of the Objective-C methods are optional is handled.
+When needing to provide Objective-C protocol implementations such as `UITableViewDataSource`, Goby provides an equivalent ClojureScript protocol, along with some glue code and a `reify` macro, making it possible to implement the Objective-C protocol directly in ClojureScript. The case where some of the Objective-C methods are optional is handled.
 
-A few other things are thrown in to get things off the ground, like some infrastructural glue code to manage the loading of the compiled JavaScript, along with simple facilities for method dispatch from the iOS to ClojureScript namespaces. ClojureScript keywords for iOS SDK enumeration constants are added to make life easier.
+A few other things are thrown in to get things off the ground, like some infrastructural glue code to manage the loading of the JavaScript, along with simple facilities for method dispatch from the iOS to ClojureScript namespaces. ClojureScript keywords for various iOS SDK enumeration constants are defined to make life easier.
 
-As such, Goby is fairly minimal, and simply provides some structure to help establish communication between the Objective-C and ClojureScript sides of the fence. It doesn't attempt to provide a sophisticated framework such as  providing a FRP model like [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa), but it at least gets you to the point where you are coding in ClojureScript. :) 
+As such, Goby is fairly minimal, simply providing some structure to help establish communication between the Objective-C and ClojureScript sides of the fence. It doesn't attempt to provide a sophisticated framework such as  providing a FRP model like [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa). It at least gets you to the point where you are coding in ClojureScript. :) 
 
 This approach was taken to build [an app](http://fikesfarm.com/cc/) currently in the App Store and this repo is derived from the reusable bits from that project.
 
@@ -39,6 +39,8 @@ REPL
 You can use a REPL while developing, inspecting and manipulating UI and other app state, revising function implementations, etc. I have found that I need to restart my iOS app when making Storyboard changes, or other significant changes. The [Shrimp](https://github.com/mfikes/shrimp) project discusses establishing a REPL.
 
 The REPL is a “browser” REPL, but connects to the embedded JavaScriptCore instance in the iOS app. (In dev builds, Goby conditionally compiles this JavaScriptCore instance to be in a hidden web view so that sufficient “browser” functionality exists for the REPL, but in release builds, a JavaScriptCore instance is directly `alloc/init`d.
+
+The REPL can connect with iOS simulator on your dev Mac, and also with instances of your app on your dev devices.
 
 Performance
 ===========
