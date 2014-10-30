@@ -11,13 +11,14 @@
 - (id)initWithObject:(JSValue *)object
 {
     if (self = [self initWithObject:object
-                           methodMap:@{}
-            cljsProtocolName:@"ScrollViewDelegate"]) {
+                          methodMap:@{}
+                       protocolName:@"ScrollViewDelegate"
+                        inNamespace:@"goby.core"]) {
     }
     return self;
 }
 
--(id)initWithObject:(JSValue*)object methodMap:(NSDictionary*)methodNameToSelector cljsProtocolName:(NSString*)cljsProtocolName
+-(id)initWithObject:(JSValue*)object methodMap:(NSDictionary*)methodNameToSelector protocolName:(NSString*)protocolName inNamespace:(NSString *)namespace
 {
     NSDictionary* baseMethodMap = @{@"did-scroll": [NSValue valueWithPointer:@selector(scrollViewDidScroll:)],
                                     @"did-zoom": [NSValue valueWithPointer:@selector(scrollViewDidZoom:)],
@@ -38,8 +39,8 @@
     // Copy in the base method names, perhaps prepending with extending protocol name
     for (NSString* name in [baseMethodMap allKeys]) {
         NSString* methodName = name;
-        if (![cljsProtocolName isEqualToString:@"ScrollViewDelegate"]) {
-            methodName = [NSString stringWithFormat:@"%@-%@", cljsProtocolName, name];
+        if (![protocolName isEqualToString:@"ScrollViewDelegate"]) {
+            methodName = [NSString stringWithFormat:@"%@-%@", protocolName, name];
         }
         [methodMap setObject:[baseMethodMap objectForKey:name] forKey:methodName];
 
@@ -50,9 +51,9 @@
         [methodMap setObject:[methodNameToSelector objectForKey:name] forKey:name];
     }
     
-    if (self = [super initWithObject:object methodMap:methodMap cljsProtocolName:cljsProtocolName]) {
-        if (![cljsProtocolName isEqualToString:@"ScrollViewDelegate"]) {
-            self.extendingProtocolName = cljsProtocolName;
+    if (self = [super initWithObject:object methodMap:methodMap protocolName:protocolName inNamespace:namespace]) {
+        if (![protocolName isEqualToString:@"ScrollViewDelegate"]) {
+            self.extendingProtocolName = protocolName;
         }
     }
     return self;

@@ -23,7 +23,7 @@
                                        @"section-for-section-index-title-at-index": [NSValue valueWithPointer:@selector(tableView:sectionForSectionIndexTitle:atIndex:)],
                                        @"commit-editing-style-for-row-at-index-path": [NSValue valueWithPointer:@selector(tableView:commitEditingStyle:forRowAtIndexPath:)],
                                        @"move-row-at-index-path-to-index-path": [NSValue valueWithPointer:@selector(tableView:moveRowAtIndexPath:toIndexPath:)]}
-            cljsProtocolName:@"TableViewDataSource"]) {
+            protocolName:@"TableViewDataSource" inNamespace:@"goby.core"]) {
         self.cellReuseIdentifier = cellReuseIdentifier;
     }
     return self;

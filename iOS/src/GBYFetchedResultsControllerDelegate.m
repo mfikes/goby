@@ -10,7 +10,7 @@
                                        @"will-change-content": [NSValue valueWithPointer:@selector(controllerWillChangeContent:)],
                                        @"did-change-content": [NSValue valueWithPointer:@selector(controllerDidChangeContent:)],
                                        @"section-index-title-for-section-name": [NSValue valueWithPointer:@selector(controller:sectionIndexTitleForSectionName:)]}
-                    cljsProtocolName:@"FetchedResultsControllerDelegate"]) {
+                    protocolName:@"FetchedResultsControllerDelegate" inNamespace:@"goby.core"]) {
     }
     return self;
 }

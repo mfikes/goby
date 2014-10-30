@@ -6,17 +6,19 @@
 @property JSValue* object;
 @property NSSet* implementedSelectors;
 @property NSDictionary* methodNameToFnCache;
+@property NSString* namespace;
 
 @end
 
 @implementation GBYProtocolForwarder
 
-- (id)initWithObject:(JSValue*)object methodMap:(NSDictionary*)methodNameToSelector cljsProtocolName:(NSString*)cljsProtocolName
+-(id)initWithObject:(JSValue*)object methodMap:(NSDictionary*)methodNameToSelector protocolName:(NSString*)protocolName inNamespace:(NSString*)namespace
 {
     if (self = [super init]) {
         self.object = object;
-        NSArray* implementedMethods = [[self getFnWithNameFromScript:[NSString stringWithFormat:@"%@-implements", cljsProtocolName]] callWithArguments:@[object]].toArray;
+        NSArray* implementedMethods = [[self getFnWithNameFromScript:[NSString stringWithFormat:@"%@-implements", protocolName]] callWithArguments:@[object]].toArray;
         [self setUpMethods:methodNameToSelector withImplementedMethods:implementedMethods];
+        self.namespace = namespace;
     }
     return self;
 }
@@ -38,8 +40,7 @@
 {
     //NSLog(@"getFnWithNameFromScript: %@", name);
     
-    JSValue* rv = [self.manager getValue:name
-                                  inNamespace:@"goby.core"];
+    JSValue* rv = [self.manager getValue:name inNamespace:self.namespace];
     
     NSAssert(!rv.isUndefined, @"Function with name %@ is undefined in script", name);
     

@@ -7,7 +7,7 @@
     if (self = [super initWithObject:object
                            methodMap:@{@"did-select-row-at-index-path": [NSValue valueWithPointer:@selector(tableView:didSelectRowAtIndexPath:)],
                                        @"did-deselect-row-at-index-path": [NSValue valueWithPointer:@selector(tableView:didDeselectRowAtIndexPath:)]}
-            cljsProtocolName:@"TableViewDelegate"]) {
+            protocolName:@"TableViewDelegate" inNamespace:@"goby.core"]) {
     }
     return self;
 }

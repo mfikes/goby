@@ -3,7 +3,7 @@
 
 @interface GBYProtocolForwarder : NSObject
 
--(id)initWithObject:(JSValue*)object methodMap:(NSDictionary*)methodNameToSelector cljsProtocolName:(NSString*)cljsProtocolName;
+-(id)initWithObject:(JSValue*)object methodMap:(NSDictionary*)methodNameToSelector protocolName:(NSString*)protocolName inNamespace:(NSString*)namespace;
 -(JSValue*)call:(NSString*)name withArguments:(NSArray*)args;
 
 @end
