@@ -16,9 +16,9 @@
 {
     if (self = [super init]) {
         self.object = object;
+        self.namespace = namespace;
         NSArray* implementedMethods = [[self getFnWithNameFromScript:[NSString stringWithFormat:@"%@-implements", protocolName]] callWithArguments:@[object]].toArray;
         [self setUpMethods:methodNameToSelector withImplementedMethods:implementedMethods];
-        self.namespace = namespace;
     }
     return self;
 }
@@ -42,7 +42,7 @@
     
     JSValue* rv = [self.manager getValue:name inNamespace:self.namespace];
     
-    NSAssert(!rv.isUndefined, @"Function with name %@ is undefined in script", name);
+    NSAssert(rv && !rv.isUndefined, @"Function with name %@.%@ is undefined in script", self.namespace, name);
     
     return rv;
 }
@@ -72,7 +72,9 @@
 
 -(BOOL)respondsToSelector:(SEL)selector
 {
-    return [self.implementedSelectors containsObject:[NSValue valueWithPointer:selector]];
+    BOOL rv = [self.implementedSelectors containsObject:[NSValue valueWithPointer:selector]];
+    //NSLog(@"%d %@", rv, NSStringFromSelector(selector));
+    return rv;
 }
 
 @end
