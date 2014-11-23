@@ -3,7 +3,7 @@
 
 @protocol GBYViewController <JSExport>
 
-@property UIInterfaceOrientation interfaceOrientation;
+- (UIInterfaceOrientation)interfaceOrientation;
 - (void)performSegueWithIdentifier:(NSString*)identifier;
 - (void)dismissViewControllerAnimated:(BOOL)animated;
 - (void)animateWithDuration:(NSTimeInterval)duration animations:(JSValue*)animations completion:(JSValue*)completion;
