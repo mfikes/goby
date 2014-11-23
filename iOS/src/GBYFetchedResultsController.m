@@ -29,14 +29,14 @@
 
 - (int)sectionCount
 {
-    return self.sections.count;
+    return (int)self.sections.count; // unsigned long
 }
 
 - (int)numberOfObjectsInSection:(int)section
 {
     if (self.sectionCount) {
         id <NSFetchedResultsSectionInfo> sectionInfo = [self.sections objectAtIndex:section];
-        return [sectionInfo numberOfObjects];
+        return (int)[sectionInfo numberOfObjects]; // unsigned long
     }
     return 0;
 }
