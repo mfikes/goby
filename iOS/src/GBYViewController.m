@@ -110,4 +110,9 @@
                        withArguments:@[@(toInterfaceOrientation), @(duration)]];
 }
 
+- (UIInterfaceOrientation)interfaceOrientation
+{
+    return super.interfaceOrientation;
+}
+
 @end
