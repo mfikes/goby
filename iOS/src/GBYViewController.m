@@ -60,15 +60,16 @@
 
 - (JSValue*)getFunctionImpl:(NSString*)name isOptional:(BOOL)optional
 {
-    JSValue *function = [self.manager getValue:name inNamespace:[self getNamespace]];
+    NSString* namespace = [self getNamespace];
+    JSValue *function = [self.manager getValue:name inNamespace:namespace];
     
     if (optional) {
         if ([function isUndefined]) {
             function = nil;
         }
     } else {
-        NSAssert(function != nil, @"Failed to find function: %@", name);
-        NSAssert(![function isUndefined], @"Function is undefined: %@", name);
+        NSAssert(function != nil, @"Failed to find function: %@/%@", namespace, name);
+        NSAssert(![function isUndefined], @"Function is undefined: %@/%@", namespace, name);
     }
     
     return function;
