@@ -45,6 +45,7 @@ var GBYNavigationItem = {};
 GBYNavigationItem.title = function() {};
 
 var GBYTableView = {};
+GBYTableView.frame = function() {};
 GBYTableView.reloadData = function() {};
 GBYTableView.reloadRowInSectionWithAnimation = function() {};
 GBYTableView.scrollToRowInSectionAtScrollPositionAnimated = function() {};
