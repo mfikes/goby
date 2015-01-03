@@ -9,6 +9,7 @@
 @property JSValue* dataSource;
 @property JSValue* delegate;
 
+@property (nonatomic) JSValue* hidden;
 @property CGRect frame;
 
 -(void)reloadData;

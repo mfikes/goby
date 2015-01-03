@@ -78,6 +78,16 @@
                                   animated:animated];
 }
 
+-(JSValue*)hidden
+{
+    return [JSValue valueWithBool:self.tableView.hidden inContext:[JSContext currentContext]];
+}
+
+-(void)setHidden:(JSValue*)hidden
+{
+    self.tableView.hidden = [hidden toBool];
+}
+
 - (void)setFrame:(CGRect)frame
 {
     self.tableView.frame = frame;
