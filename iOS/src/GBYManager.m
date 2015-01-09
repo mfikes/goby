@@ -19,25 +19,11 @@
 
 @implementation GBYManager
 
-+ (void)showAlertForError:(NSString *)error
-{
-	dispatch_async(dispatch_get_main_queue(), ^{
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:nil
-                              message				:error
-                              delegate			:nil
-                              cancelButtonTitle	:NSLocalizedString(@"OK", nil)
-                              otherButtonTitles	:nil];
-        [alert show];
-    });
-}
-
 - (void)setUpExceptionLogging:(JSContext*)context
 {
     context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
        NSString* errorString = [NSString stringWithFormat:@"[%@:%@:%@] %@\n%@", exception[@"sourceURL"], exception[@"line"], exception[@"column"], exception, [exception[@"stack"] toObject]];
         NSLog(@"%@", errorString);
-        //[GBYManager showAlertForError:errorString];
     };
 }
 
@@ -47,7 +33,6 @@
     context[@"console"][@"log"] = ^(NSString *message) {
         NSLog(@"JS: %@",message);
     };
-    //[context evaluateScript:@"window.simple_brepl_ip=null;window.simple_brepl_port=null;"];
 }
 
 - (void)setUpTimerFunctionality:(JSContext*)context
