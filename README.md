@@ -3,6 +3,8 @@ Goby
 
 Develop iOS apps with ClojureScript.
 
+[![Clojars Project](http://clojars.org/goby/latest-version.svg)](http://clojars.org/goby)
+
 Overview
 ========
 
