@@ -3,6 +3,11 @@ Goby
 
 Develop iOS apps with ClojureScript.
 
+```
+platform :ios, '8.0'
+pod "Goby", "~> 0.1.0"
+```
+
 [![Clojars Project](http://clojars.org/goby/latest-version.svg)](http://clojars.org/goby)
 
 Overview
@@ -27,7 +32,7 @@ Check out the companion working example project [Shrimp](https://github.com/mfik
 
 Roughly speaking, the overall steps are:
 
-1. Set up sibling iOS and ClojureScript projects and make the Goby iOS and ClojureScript code available to each. (The [Shrimp](https://github.com/mfikes/shrimp) project provides a working example of this where Goby is simply used as a Git submodule along with a sprinkling of symbolic links. In the future this will probably be revised to allow the Goby dependencies to be managed via CocoaPods and Clojars.) 
+1. Set up sibling iOS and ClojureScript projects and make the Goby iOS and ClojureScript code available to each. (The [Shrimp](https://github.com/mfikes/shrimp) project provides a working example of this where the Goby dependencies are managed via CocoaPods and Clojars.) 
 1. The ClojureScript for your app compiles down to JavaScript which is included as a reference in the iOS project bundle.
 1. In your `[AppDelegate application:didFinishLaunchingWithOptions:]` set up an instance of `GBYManager`, which loads the ClojureScript-compiled JavaScript, and adds a few callback handlers as needed for logging and timers.
 1. Create a view using Storyboards in Xcode’s interface builder as usual, and wire the UI elements to your view controller header as you would normally do. Create a "glue" `UIViewController` class for this view by extending `GBYViewController`. Make your view controller call into the ClojureScript when the view is loaded, passing in decorated references to UIKit elements.
