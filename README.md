@@ -45,7 +45,7 @@ REPL
 
 You can use a REPL while developing, inspecting and manipulating UI and other app state, revising function implementations, etc. I have found that I need to restart my iOS app when making Storyboard changes, or other significant changes. The [Shrimp](https://github.com/mfikes/shrimp) project discusses establishing a REPL.
 
-The REPL is a “browser” REPL, but connects to the embedded JavaScriptCore instance in the iOS app. (In dev builds, Goby conditionally compiles this JavaScriptCore instance to be in a hidden web view so that sufficient “browser” functionality exists for the REPL, but in release builds, a JavaScriptCore instance is directly `alloc/init`d.
+The REPL is a “browser” REPL, but connects to the embedded JavaScriptCore instance in the iOS app. (In dev builds, Goby conditionally compiles this JavaScriptCore instance to be in a hidden web view so that sufficient “browser” functionality exists for the REPL, but in release builds, a `JSContext` instance is directly `alloc/init`d.
 
 The REPL can connect with iOS simulator on your dev Mac, and also with instances of your app on your dev devices.
 
