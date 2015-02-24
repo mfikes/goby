@@ -21,7 +21,7 @@
     `(do
        (def ~'view-controller (atom nil))
        ~@(map #(list 'def % '(clojure.core/atom nil)) ui-elements)
-       (defn ~'handle-view-did-load! [])
+       (declare ~'handle-view-did-load!)
        (defn ~(with-meta 'view-did-load! {:export true}) [view-controller# ~@ui-elements]
          (reset! ~(symbol my-ns "view-controller") view-controller#)
          ~@(map #(list 'reset! (symbol my-ns (str %)) %) ui-elements)
