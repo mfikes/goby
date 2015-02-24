@@ -1,4 +1,4 @@
-(defproject goby "0.1.0"
+(defproject goby "0.2.0-SNAPSHOT"
   :description "Develop iOS apps in ClojureScript"
   :url "http://github.com/mfikes/goby"
   :license {:name "Eclipse"

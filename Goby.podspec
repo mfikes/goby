@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name            = 'Goby'
-  s.version         = '0.1.0'
+  s.version         = '0.2.0'
   s.license         = { :type => 'Eclipse Public License 1.0', :file => 'LICENSE' }
   s.summary         = 'Develop iOS apps with ClojureScript'
   s.homepage        = 'https://github.com/mfikes/goby'
