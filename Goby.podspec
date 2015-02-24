@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.summary         = 'Develop iOS apps with ClojureScript'
   s.homepage        = 'https://github.com/mfikes/goby'
   s.author          = 'Mike Fikes'
-  s.source          = { :git => 'https://github.com/mfikes/goby.git', :tag => '0.1.0' }
+  s.source          = { :git => 'https://github.com/mfikes/goby.git', :tag => '0.2.0' }
   s.source_files    = 'iOS/src/*.{h,m}'
   s.platform        = :ios
   s.requires_arc    = true
