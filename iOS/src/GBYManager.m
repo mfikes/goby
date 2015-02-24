@@ -76,11 +76,17 @@
     return context;
 }
 
+
 - (id)initWithInitFnName:(NSString*)initFnName inNamespace:(NSString*)namespace
+{
+    return [self initWithInitFnName:initFnName inNamespace:namespace withContext:[self createJSContext]];
+}
+
+- (id)initWithInitFnName:(NSString*)initFnName inNamespace:(NSString*)namespace withContext:(JSContext*)context;
 {
     if (self = [super init]) {
         
-        [self setContext:[self createJSContext]];
+        [self setContext:context];
         
         [self injectClass:[GBYColor class] withGlobalName:@"GBYColor"];
         [self injectClass:[GBYSoundUtils class] withGlobalName:@"GBYSoundUtils"];

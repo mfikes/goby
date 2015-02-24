@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 
+@class JSContext;
 @class JSValue;
 
 /**
@@ -10,13 +11,24 @@
 
 /**
  Initializes this `GBYManager`. Calls the supplied initialization function in the 
- specified namespace.
+ specified namespace. Internally creates an instance of `JSContext`.
  
  @param initFnName The initialization function name.
  @param namespace The namespace of the initialization function.
  @return This `GBYManager` instance.
  */
 - (id)initWithInitFnName:(NSString*)initFnName inNamespace:(NSString*)namespace;
+
+/**
+ Initializes this `GBYManager`. Calls the supplied initialization function in the
+ specified namespace.
+ 
+ @param initFnName The initialization function name.
+ @param namespace The namespace of the initialization function.
+ @param context The JavaScriptCore context to use.
+ @return This `GBYManager` instance.
+ */
+- (id)initWithInitFnName:(NSString*)initFnName inNamespace:(NSString*)namespace withContext:(JSContext*)context;
 
 /**
  Gets the value for a name in a namespace.
