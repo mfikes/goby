@@ -1,3 +1,5 @@
 ClojureScript/target
 pom.xml
 pom.xml.asc
+ClojureScript/.idea
+goby.iml
