@@ -11,7 +11,8 @@
 
 /**
  Initializes this `GBYManager`. Calls the supplied initialization function in the 
- specified namespace. Internally creates an instance of `JSContext`.
+ specified namespace. Internally creates an instance of `JSContext`, loading 
+ `main.js` from the bundle.
  
  @param initFnName The initialization function name.
  @param namespace The namespace of the initialization function.
@@ -21,7 +22,7 @@
 
 /**
  Initializes this `GBYManager`. Calls the supplied initialization function in the
- specified namespace.
+ specified namespace, loading `main.js` from the bundle.
  
  @param initFnName The initialization function name.
  @param namespace The namespace of the initialization function.
@@ -29,6 +30,30 @@
  @return This `GBYManager` instance.
  */
 - (id)initWithInitFnName:(NSString*)initFnName inNamespace:(NSString*)namespace withContext:(JSContext*)context;
+
+/**
+ Initializes this `GBYManager`. Calls the supplied initialization function in the
+ specified namespace, Internally creates an instance of `JSContext`, optionally loading JavaScript.
+ 
+ @param initFnName The initialization function name.
+ @param namespace The namespace of the initialization function.
+ @param context The JavaScriptCore context to use.
+ @param path Path to optinal JavaScript to load. (Skipped if `nil`.)
+ @return This `GBYManager` instance.
+ */
+- (id)initWithInitFnName:(NSString*)initFnName inNamespace:(NSString*)namespace loadingJavaScript:(NSString*)path;
+
+/**
+ Initializes this `GBYManager`. Calls the supplied initialization function in the
+ specified namespace, optionally loading JavaScript.
+ 
+ @param initFnName The initialization function name.
+ @param namespace The namespace of the initialization function.
+ @param context The JavaScriptCore context to use.
+ @param path Path to optinal JavaScript to load. (Skipped if `nil`.)
+ @return This `GBYManager` instance.
+ */
+- (id)initWithInitFnName:(NSString*)initFnName inNamespace:(NSString*)namespace withContext:(JSContext*)context loadingJavaScript:(NSString*)path;
 
 /**
  Gets the value for a name in a namespace.

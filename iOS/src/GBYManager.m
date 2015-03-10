@@ -79,10 +79,28 @@
 
 - (id)initWithInitFnName:(NSString*)initFnName inNamespace:(NSString*)namespace
 {
-    return [self initWithInitFnName:initFnName inNamespace:namespace withContext:[self createJSContext]];
+    return [self initWithInitFnName:initFnName
+                        inNamespace:namespace
+                        withContext:[self createJSContext]];
 }
 
-- (id)initWithInitFnName:(NSString*)initFnName inNamespace:(NSString*)namespace withContext:(JSContext*)context;
+- (id)initWithInitFnName:(NSString*)initFnName inNamespace:(NSString*)namespace withContext:(JSContext*)context
+{
+    return [self initWithInitFnName:initFnName
+                        inNamespace:namespace
+                        withContext:context
+                  loadingJavaScript:[[NSBundle mainBundle] pathForResource:@"main" ofType:@"js"]];
+}
+
+- (id)initWithInitFnName:(NSString*)initFnName inNamespace:(NSString*)namespace loadingJavaScript:(NSString*)path
+{
+    return [self initWithInitFnName:initFnName
+                        inNamespace:namespace
+                        withContext:[self createJSContext]
+                  loadingJavaScript:path];
+}
+
+- (id)initWithInitFnName:(NSString*)initFnName inNamespace:(NSString*)namespace withContext:(JSContext*)context loadingJavaScript:(NSString*)path
 {
     if (self = [super init]) {
         
@@ -94,6 +112,12 @@
                 
         NSAssert(_context != nil, @"The JavaScript context should not be nil");
         
+        // Load the ClojureScript module
+        if (path) {
+            NSString *scriptString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+            NSAssert(scriptString != nil, @"The JavaScript text could not be loaded");
+            [self.context evaluateScript:scriptString];
+        }
         JSValue* initFn = [self getValue:initFnName inNamespace:namespace];
         
         NSAssert(!initFn.isUndefined, @"Could not find the app init function");
