@@ -94,12 +94,6 @@
                 
         NSAssert(_context != nil, @"The JavaScript context should not be nil");
         
-        // Load the ClojureScript module
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"main" ofType:@"js"];
-        NSString *scriptString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-        NSAssert(scriptString != nil, @"The JavaScript text could not be loaded");
-        [self.context evaluateScript:scriptString];
-        
         JSValue* initFn = [self getValue:initFnName inNamespace:namespace];
         
         NSAssert(!initFn.isUndefined, @"Could not find the app init function");
