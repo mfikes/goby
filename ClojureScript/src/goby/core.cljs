@@ -155,7 +155,7 @@
   ;; Defined in UITableViewDelegate
 
   (^:export will-display-cell-for-row-at-index-path [this cell section row])
-  (^:export will-display-header-view-for-section: [this view section])
+  (^:export will-display-header-view-for-section [this view section])
   (^:export will-display-footer-view-for-section [this view section])
   (^:export did-end-displaying-cell-for-row-at-index-path [this cell section row])
   (^:export did-end-displaying-header-view-for-section [this view section])
