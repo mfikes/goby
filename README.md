@@ -59,7 +59,7 @@ For tasks such as using HTTP for image fetching or REST API calls, I simply make
 Project Status
 ==============
 
-Goby is under active development. I have used it to create [one production app](http://fikesfarm.com/cc/) in the App Store and am using it to develop additional apps, fleshing out aspects of the Goby code as needed. As such the code is incomplete in some areas, has some rough corners in others, and questionable—but workable—design in others. So the code is still evolving and subject to change.
+I have used Goby to create [one production app](http://fikesfarm.com/cc/) in the App Store. I'm maintaining Goby, fleshing out aspects of the Goby code as needed. As such the code is incomplete in some areas, has some rough corners in others, and questionable—but workable—design in others.
 
 Having said that, If you'd like to use it, or would like to contribute, I'd be happy---that's the point of sharing it here!
 
