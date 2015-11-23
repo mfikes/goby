@@ -21,9 +21,9 @@ When needing to provide Objective-C protocol implementations such as `UITableVie
 
 A few other things are thrown in to get things off the ground, like some infrastructural glue code to manage the loading of the JavaScript, along with simple facilities for method dispatch from the iOS to ClojureScript namespaces. ClojureScript keywords for various iOS SDK enumeration constants are defined to make life easier.
 
-As such, Goby is fairly minimal, simply providing some structure to help establish communication between the Objective-C and ClojureScript sides of the fence. It doesn't attempt to provide a sophisticated framework such as  providing a FRP model like [ReactiveCocoa](https://github.com/ReactiveCocoa/ReactiveCocoa). It at least gets you to the point where you are coding in ClojureScript. :) 
+As such, Goby is fairly minimal, simply providing some structure to help establish communication between the Objective-C and ClojureScript sides of the fence. It doesn't attempt to provide a sophisticated framework supporting a functional programming style. But, it at least gets you to the point where you are coding in ClojureScript. :) 
 
-This approach was taken to build [an app](http://fikesfarm.com/cc/) currently in the App Store and this repo is derived from the reusable bits from that project.
+This approach was used to build [an app](http://fikesfarm.com/cc/) currently in the App Store and this repo is derived from the reusable bits from that project.
 
 Usage
 =====
@@ -61,7 +61,7 @@ Project Status
 
 I have used Goby to create [one production app](http://fikesfarm.com/cc/) in the App Store. I'm maintaining Goby, fleshing out aspects of the Goby code as needed. As such the code is incomplete in some areas, has some rough corners in others, and questionable—but workable—design in others.
 
-Having said that, If you'd like to use it, or would like to contribute, I'd be happy---that's the point of sharing it here!
+For future apps, I'm instead focusing on using ClojureScript with Om and React Native. This leads to a much saner architectural style, adhering to FP principles, embracing immutability, _etc._ Goby was created in a world that didn't have React Native. I am no longer pushing forward with the imperative approach used by Goby. To learn more about React Native with ClojureScript, see [cljsrn.org](http://cljsrn.org).
 
 License
 =======
