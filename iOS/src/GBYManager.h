@@ -37,7 +37,6 @@
  
  @param initFnName The initialization function name.
  @param namespace The namespace of the initialization function.
- @param context The JavaScriptCore context to use.
  @param path Path to optinal JavaScript to load. (Skipped if `nil`.)
  @return This `GBYManager` instance.
  */
