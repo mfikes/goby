@@ -1,4 +1,5 @@
-(ns goby.macros)
+(ns goby.macros
+  (:refer-clojure :exclude [reify]))
 
 (defmacro reify
   "Implements a protocol, delegating to clojure.core/reify while also adding an
