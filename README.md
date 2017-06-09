@@ -66,6 +66,6 @@ For future apps, I'm instead focusing on using ClojureScript with Om and React N
 License
 =======
 
-Copyright © 2014–2015 Mike Fikes and Contributors
+Copyright © 2014–2017 Mike Fikes and Contributors
 
 Distributed under the Eclipse Public License either version 1.0 or (at your option) any later version.
