@@ -41,6 +41,12 @@
  */
 - (int)numberOfObjectsInSection:(int)section;
 
+/**
+ Gets the section index titles.
+ @return the section index titles.
+ */
+- (NSArray *)sectionIndexTitles;
+
 @end
 
 /**

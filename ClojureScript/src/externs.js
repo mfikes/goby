@@ -103,6 +103,7 @@ GBYFetchedResultsController.performFetch = function() {};
 GBYFetchedResultsController.objectAtSectionRow = function() {};
 GBYFetchedResultsController.sectionCount = function() {};
 GBYFetchedResultsController.numberOfObjectsInSection = function() {};
+GBYFetchedResultsController.sectionIndexTitles = function() {};
 
 var GBYSoundUtils = {};
 GBYSoundUtils.playSoundWithNameAndExtension = function() {};
