@@ -6,7 +6,8 @@
 {
     if (self = [super initWithObject:object
                            methodMap:@{@"did-select-row-at-index-path": [NSValue valueWithPointer:@selector(tableView:didSelectRowAtIndexPath:)],
-                                       @"did-deselect-row-at-index-path": [NSValue valueWithPointer:@selector(tableView:didDeselectRowAtIndexPath:)]}
+                                       @"did-deselect-row-at-index-path": [NSValue valueWithPointer:@selector(tableView:didDeselectRowAtIndexPath:)],
+                                       @"title-for-delete-confirmation-button-for-row-at-index-path": [NSValue valueWithPointer:@selector(tableView:titleForDeleteConfirmationButtonForRowAtIndexPath:)]}
             protocolName:@"TableViewDelegate" inNamespace:@"goby.core"]) {
     }
     return self;
@@ -22,5 +23,9 @@
     [self call:@"did-deselect-row-at-index-path" withArguments:@[@(indexPath.section), @(indexPath.row)]];
 }
 
+- (NSString*)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self call:@"title-for-delete-confirmation-button-for-row-at-index-path" withArguments:@[@(indexPath.section), @(indexPath.row)]].toString;
+}
 
 @end
