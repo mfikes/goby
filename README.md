@@ -5,7 +5,7 @@ Develop iOS apps with ClojureScript.
 
 ```
 platform :ios, '8.0'
-pod "Goby", "~> 0.3.1"
+pod "Goby", "~> 1.1.0"
 ```
 
 [![Clojars Project](https://img.shields.io/clojars/v/goby.svg)](https://clojars.org/goby)
